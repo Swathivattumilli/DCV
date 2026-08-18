@@ -19,3 +19,11 @@ Educational certificates are often verified manually, which takes more time. Thi
 7. Original Certificate Preview
 
 See `frontend/README.md` for complete setup instructions.
+## Live Demo
+
+- Frontend: https://dcv-frontend.vercel.app/
+- Backend API: https://dcv-backend.vercel.app/
+
+## GitHub Repository
+
+https://github.com/Swathivattumilli/DCV
