@@ -1,14 +1,13 @@
 {
-  "name": "digital-certificate-verification-backend",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "REST API for Digital Certificate Verification System",
+  "description": "Digital Certificate Verification System Backend",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node server.js"
   },
-  "keywords": ["certificate", "verification", "mongodb", "express"],
-  "author": "Digital Certificate Verification Team",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
@@ -16,7 +15,8 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "mongoose": "^9.9.1",
-    "multer": "^2.0.2"
+    "multer": "^2.2.0",
+    "uuid": "^14.0.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"

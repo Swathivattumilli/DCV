@@ -1,26 +1,50 @@
+const dns = require("dns");
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
+
 const express = require("express");
 const cors = require("cors");
-const path = require("path");
 const dotenv = require("dotenv");
+
 const connectDB = require("./config/db");
 const certificateRoutes = require("./routes/certificateRoutes");
 
 dotenv.config();
-connectDB();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
-app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:3000" }));
+app.use(cors());
 app.use(express.json());
-app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-app.use("/api/certificates", certificateRoutes);
 
-app.get("/", (_, res) => res.json({ message: "Digital Certificate Verification API is running" }));
+// Connect MongoDB
+connectDB();
 
-app.use((err, _, res, __) => {
-  console.error(err);
-  res.status(400).json({ message: err.message || "Request failed" });
+// Serve uploaded certificate files
+app.use("/uploads", express.static("uploads"));
+
+// Test routes
+app.get("/", (req, res) => {
+    res.json({
+        success: true,
+        message: "Digital Certificate Verification System API is running 🚀"
+    });
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.get("/test", (req, res) => {
+    res.json({
+        success: true,
+        message: "TEST ROUTE WORKING"
+    });
+});
+
+app.get("/api/certificates/test", (req, res) => {
+    res.json({
+        success: true,
+        message: "Certificate route is working"
+    });
+});
+
+// Certificate routes
+app.use("/api/certificates", certificateRoutes);
+
+// Export app for Vercel
+module.exports = app;
