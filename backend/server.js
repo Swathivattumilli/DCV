@@ -1,9 +1,12 @@
 const dns = require("dns");
+
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
 
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const os = require("os");
+const path = require("path");
 
 const connectDB = require("./config/db");
 const certificateRoutes = require("./routes/certificateRoutes");
@@ -19,7 +22,10 @@ app.use(express.json());
 connectDB();
 
 // Serve uploaded certificate files
-app.use("/uploads", express.static("uploads"));
+app.use(
+    "/uploads",
+    express.static(path.join(os.tmpdir(), "uploads"))
+);
 
 // Test routes
 app.get("/", (req, res) => {
